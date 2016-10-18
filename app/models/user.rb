@@ -13,7 +13,7 @@ class User < ApplicationRecord
   devise :omniauthable
 
   def self.from_omniauth(auth)
-    binding.pry
+    # binding.pry
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       auth.info.email ? user.email = auth.info.email : ""
       user.password = Devise.friendly_token[0,20]
