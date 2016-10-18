@@ -1,0 +1,85 @@
+  .container {
+    text-align: center;
+  }
+
+  h1 {
+    font-family: "PT Sans";
+    font-size: 80px;
+    text-align: center;
+    color: black;
+    padding: 20px;
+  }
+
+  .subheading {
+    font-family: PT Sans;
+    font-size: 50px;
+  }
+
+  h2 {
+    font-family: "PT Sans";
+    font-size: 50px;
+    text-align: center;
+  }
+
+  h3 {
+    font-family: "PT Sans";
+    font-size: 40px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  p {
+   font-family: PT Sans;
+   font-size: 20px;
+   color: blue;
+  }
+
+  div {
+   font-family: PT Sans;
+   font-size: 25px;
+   color: grey;
+   text-align: center;
+  }
+
+  div.location_show {
+   font-family: PT Sans;
+   font-size: 40px;
+   color: grey;
+   text-align: center;
+  }
+
+  div.errors {
+   font-family: PT Sans;
+   font-size: 20px;
+   color: blue;
+   text-align: center;
+  }
+
+  p.left {
+    text-align: left;
+  }
+
+
+  a:link {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: lightblue;
+  }
+
+  .pink-text {
+    color: hotpink;
+  }
+
+  nav.navbar.navbar-default.navbar-light a:hover {
+    text-decoration: none;
+    color: lightblue ;
+  }

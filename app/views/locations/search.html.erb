@@ -1,0 +1,10 @@
+
+<div class="errors">
+
+<% if @experiences.present? %>
+  <%= render @experiences %>
+<% elsif @none_found == "none" %>
+  <p>There are no experiences containing the term(s) <%= params[:search] %>.</p>
+<% end %>
+
+</div>

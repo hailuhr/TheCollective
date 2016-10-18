@@ -1,0 +1,9 @@
+<div>
+<% @locations.each do |location| %>
+<% location.each do |l| %>
+  <div><%= link_to location.experience.story, experience_path(location.experience)%> </div>
+
+  <% end %>
+  <% end %>
+
+</div>

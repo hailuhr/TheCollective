@@ -1,0 +1,7 @@
+<div class="experiences">
+<% Experience.all.each do |experience| %>
+  <div><%= link_to experience.story, experience_path(experience)%> </div>
+
+  <% end %>
+
+</div>

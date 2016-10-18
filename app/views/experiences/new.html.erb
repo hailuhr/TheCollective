@@ -1,0 +1,32 @@
+
+<div class="experience">
+<%= form_for @experience do |f| %>
+<%= f.label :story %><br>
+<%= f.text_field :story %>
+<br><%= f.collection_select :location_id, @locations, :id, :name, include_blank: true %></br>
+
+<br>
+<br>
+
+</div>
+
+<div class="location_new">
+
+
+<%= f.fields_for :location do |location| %>
+<%= location.label :name %>
+<%= location.text_field :name %>
+<%= location.label :address %>
+<%= location.text_field :address %>
+<%= location.label :city %>
+<%= location.text_field :city %>
+<%= location.label :state %>
+<%= location.text_field :state %>
+<% end %>
+
+<%= f.submit %>
+
+<% end %>
+
+
+</div>

@@ -1,0 +1,8 @@
+<h1>Experience form</h1>
+<%= form_tag experience_path(@experience), method: "put" do %>
+
+<label>Experience </label>
+<%= text_field_tag :'experience[name]', @experience.story %><br>
+
+<%= submit_tag "Update experience" %>
+<% end %>

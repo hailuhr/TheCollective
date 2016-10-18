@@ -1,0 +1,38 @@
+
+<div class="location_show">
+<%= @location.name %><br>
+<%= @location.city %><br>
+<%= @location.state %><br>
+<%= @location.address %><br>
+</div>
+
+<br>
+<br>
+
+
+<div class="location_experiences">
+  The Collective Experience(s): <br><br>
+<% @location.experiences.each do |exp| %>
+<%= exp.story %><br>
+<br>
+<% end %>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="location_comments">
+
+Latest Comment:
+<br>
+<br>
+<% @location.comments.each do |comment| %>
+<%= comment.content %>
+
+<% end %>
+
+<%= link_to "Post Comment", new_location_comment_path(@location) %>

@@ -1,0 +1,15 @@
+<div class="experience_story" >
+<%= @experience.story %></h1>
+
+<br>
+<br>
+<br>
+
+
+Location:
+<br>
+<%= link_to @experience.location.name, location_path(@experience.location) %><br>
+<%= @experience.location.name %><br>
+<%= @experience.location.city %><br>
+
+</div>

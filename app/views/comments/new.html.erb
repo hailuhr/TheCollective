@@ -1,0 +1,5 @@
+<%= form_for [@location, @comment] do |f| %>
+  <%= f.hidden_field :location_id, value: @location.id %>
+  <%= f.text_field :content %>
+  <%= f.submit "Post Comment" %>
+<% end %>
