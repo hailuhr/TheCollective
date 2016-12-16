@@ -7,10 +7,12 @@ class LocationsController < ApplicationController
 
     def show
       @location = Location.find_by_id(params[:id])
-      respond_to do |format|
-        format.html { render :show }
-        format.json { render json: @location}
-      end
+      # respond_to do |format|
+      #   # format.html { render :show }
+      #   format.json { render json: @location}
+      # end
+
+      render json: @location
     end
 
 
