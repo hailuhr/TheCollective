@@ -31,7 +31,7 @@ Latest Comment:
 <br>
 <br>
 <% @location.comments.each do |comment| %>
-<%= comment.content %>
+<%= link_to comment.content, location_comment_path(comment) %><br>
 
 <% end %>
 

@@ -4,14 +4,20 @@ class LocationsController < ApplicationController
       @location = Location.new
     end
 
+
     def show
       @location = Location.find_by_id(params[:id])
-      @comment = Comment.new
     end
+
+
+
+
+
 
 
     def create
       @location = Location.new(location_params)
+
       if @location.save
         redirect_to location_path(@location)
       else
@@ -19,9 +25,11 @@ class LocationsController < ApplicationController
       end
     end
 
+
     def edit
       @location = Location.find_by_id(params[:id])
     end
+
 
     def update
       @location = Location.find(params[:id])
@@ -34,8 +42,8 @@ class LocationsController < ApplicationController
       render :"/locations/all"
     end
 
+
     def index
-      # @locations = Location.all.sort
       @locations = Location.all.order('created_at DESC')
     end
 
@@ -54,7 +62,7 @@ class LocationsController < ApplicationController
     private
 
       def location_params
-        params.require(:location).permit(:name, :city, :state)
+        params.require(:location).permit(:name, :city, :state, :address)
       end
 
 

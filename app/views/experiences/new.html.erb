@@ -1,6 +1,7 @@
 
 <div class="experience">
 <%= form_for @experience do |f| %>
+<%= f.hidden_field :user_id, value: "#{current_user.id}" %>
 <%= f.label :story %><br>
 <%= f.text_field :story %>
 <br><%= f.collection_select :location_id, @locations, :id, :name, include_blank: true %></br>
@@ -23,7 +24,7 @@
 <%= location.label :state %>
 <%= location.text_field :state %>
 <% end %>
-
+ 
 <%= f.submit %>
 
 <% end %>

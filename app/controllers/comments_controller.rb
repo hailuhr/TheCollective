@@ -1,9 +1,5 @@
 class CommentsController < ApplicationController
 
-  # def index
-  #   @comments = Comment.all
-  # end
-
   def new
     @location = Location.find_by_id(params[:location_id])
     @comment = Comment.new
@@ -22,20 +18,20 @@ class CommentsController < ApplicationController
   end
 
 
-  def update
-    @comment = Comment.find_by(params[:id])
-    @comment.update(comment_params)
-    @location = Location.find_by_id(@comment.location_id)
-    redirect_to location_path(@location)
-  end
+  # def update
+  #   @comment = Comment.find_by(params[:id])
+  #   @comment.update(comment_params)
+  #   @location = Location.find_by_id(@comment.location_id)
+  #   redirect_to location_path(@location)
+  # end
 
 
 
-  private
+    private
 
-    def comment_params
-      params.require(:comment).permit(:content, :location_id)
-    end
+      def comment_params
+        params.require(:comment).permit(:content, :location_id)
+      end
 
 
 end

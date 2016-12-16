@@ -1,7 +1,7 @@
 class ExperiencesController < ApplicationController
 
+
     def new
-      @location = Location.new
       @experience = Experience.new
       @experience.build_location
       @locations = Location.all
@@ -14,19 +14,17 @@ class ExperiencesController < ApplicationController
 
 
     def create
+      # binding.pry
       if params[:experience][:location_id].empty?
-        @experience = Experience.new(user: current_user, story: params[:experience][:story])
-        @experience.build_location(experience_params[:location_attributes])
+        @experience = Experience.create(experience_params)
         @experience.save
       else
-        @experience = Experience.create(:story => experience_params[:story], :location_id => experience_params[:location_id], :user_id => current_user.id)
+        @experience = Experience.create(story: experience_params[:story], user_id: experience_params[:user_id], location_id: experience_params[:location_id])
       end
 
       if @experience.valid?
           redirect_to experience_path(@experience)
       else
-        # @locations = Location.all
-        # render :new
         redirect_to new_experience_path
       end
 
@@ -50,7 +48,7 @@ class ExperiencesController < ApplicationController
     private
 
       def experience_params
-        params.require(:experience).permit(:story, :location_id, location_attributes: [:name, :city, :state, :address])
+          params.require(:experience).permit(:story, :user_id, :location_id, location_attributes: [:name, :city, :state, :address])
       end
 
 

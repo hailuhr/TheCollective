@@ -1,15 +1,16 @@
 class Location < ApplicationRecord
 
   has_many :experiences
+
   has_many :users, :through => :experiences
 
   has_many :comments
-  has_many :user_comments, through: :users, source: :comments
 
 
-  validates :name, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
+
+
+  validates_presence_of :name, :city, :state
+
 
 
   def self.search(search)
@@ -19,7 +20,6 @@ class Location < ApplicationRecord
       nil
     end
   end
-
 
 
 end
