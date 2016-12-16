@@ -7,6 +7,10 @@ class LocationsController < ApplicationController
 
     def show
       @location = Location.find_by_id(params[:id])
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @location}
+      end
     end
 
 
@@ -39,17 +43,14 @@ class LocationsController < ApplicationController
 
 
     def index
-      @locations = Location.all.order('created_at DESC')
-
-      render json: [@locations]
+      @locations = Location.all
+      respond_to do |format|
+        format.json { render json: @locations }
+        format.html { render :index }
+      end
+      # render json: @locations
     end
 
-    def locations_list
-      binding.pry
-      locations = Location.all.order('created_at DESC')
-
-      render json: locations
-    end
 
     def search
       if params[:search]

@@ -13,9 +13,10 @@ function locationsList(e) {
     url: "/locations",
     success: function(data){
       // debugger;
-      $(".list").append("<br>")
 
-      data[0].forEach(function(e){
+      $(".list").append("<br>")
+      //
+      data.forEach(function(e){
         var id = e.id
         var link = $(document.createElement("a"))
 
@@ -27,11 +28,11 @@ function locationsList(e) {
         $(".list").append(link)
         $(".list").append("<br>")
 
-      });
+        // $(".list").append(data)
+      })
 
     }
-
-  })
+  });
 }
 
 
