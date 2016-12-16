@@ -1,6 +1,8 @@
 <div class="locations">
 <% @locations.each do |location| %>
-  <div><%= link_to location.name, location_path(location)%> </div>
+  <div class="locations_list">
+    <%= link_to location.name, location_path(location)%>
+  </div>
 
   <% end %>
 

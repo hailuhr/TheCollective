@@ -10,11 +10,6 @@ class LocationsController < ApplicationController
     end
 
 
-
-
-
-
-
     def create
       @location = Location.new(location_params)
 
