@@ -1,8 +1,9 @@
 
 <div class="home">
-  <a id="new_experience"><%= link_to "Share New Experience |", new_experience_path %></a>
-  <a id="new_location"><%= link_to "Share New Location |", new_location_path %></a>
-  <a id="view_locations"><%= link_to "View Locations |", locations_path %></a>
-  <a id="view_locations"><%= link_to "View Experiences", experiences_path %></a>
+
+  <%= link_to "Share New Experience |", new_experience_path, :id => "new_experience" %></a>
+  <%= link_to "Share New Location |", new_location_path, :id => "new_location" %></a>
+  <%= link_to "View Locations |", locations_path, :id => "view_locations" %></a>
+  <%= link_to "View Experiences", experiences_path, :id => "view_experiences" %></a>
 
 </div>
