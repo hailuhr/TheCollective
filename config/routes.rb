@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   devise_scope :user do
      get '/users/sign_out' => 'devise/sessions#destroy'
   end
-resources :user
+
+  resources :user
 
   get "search" => "locations#search"
 
@@ -24,7 +25,8 @@ resources :user
     resources :comments, only: [:show, :create, :new]
   end
 
-
+  get "/locations/list" => "locations#locations_list"
+  
 end
 
 

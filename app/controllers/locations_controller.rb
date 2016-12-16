@@ -40,8 +40,16 @@ class LocationsController < ApplicationController
 
     def index
       @locations = Location.all.order('created_at DESC')
+
+      render json: [@locations]
     end
 
+    def locations_list
+      binding.pry
+      locations = Location.all.order('created_at DESC')
+
+      render json: locations
+    end
 
     def search
       if params[:search]

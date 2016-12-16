@@ -10,7 +10,27 @@ function locationsList(e) {
   e.preventDefault()
   $.ajax({
     method: "GET",
-    url: "/"
+    url: "/locations",
+    success: function(data){
+      // debugger;
+      $(".list").append("<br>")
+
+      data[0].forEach(function(e){
+        var id = e.id
+        var link = $(document.createElement("a"))
+
+        link.attr('href', `/locations/${id}`)
+        link.attr('class', `locationId`)
+        link.attr('value', "link")
+        link.attr('id', `${id}`)
+        link.text(e.name)
+        $(".list").append(link)
+        $(".list").append("<br>")
+
+      });
+
+    }
+
   })
 }
 
