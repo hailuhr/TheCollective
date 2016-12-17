@@ -13,7 +13,30 @@ $(document).on('turbolinks:load', function() {
   $("body").on("click", "#locationCreate", makeLocation)
 })
 
+function makeLocation(e){
+  e.preventDefault()
+  // debugger;
+  var name = $("#location_name").val()
+  var city = $("#location_city").val()
+  var state = $("#location_state").val()
+  var address = $("#location_address").val()
+  // debugger
 
+  $.ajax({
+    method: "POST",
+    url: "/locations",
+    data: {
+      name: `${name}`,
+      city: `${city}`,
+      state: `${state}`,
+      address: `${address}`
+    },
+    success: function(data) {
+      $("#show").text(data.name)
+    }
+  })
+
+}
 
 function newLocationForm(e) {
   e.preventDefault()
@@ -42,19 +65,18 @@ function locationShow(e) {
   e.preventDefault()
 
   var id = parseInt(this.id)
-  debugger
 
   $.ajax({
     method: "GET",
     url: `/locations/${id}`,
     success: function(data){
-      debugger
       var info = "Name: " + data.name + "Address: "+ data.address + "City: "+ data.city + "State: " + data.state
 
       $(".show").text(info)
 
+      debugger
+
       data.comments.forEach(function(comment) {
-        // debugger
         $(".comment").append("<br>")
         $(".comment").append(comment.content)
       })

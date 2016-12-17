@@ -11,19 +11,22 @@ class LocationsController < ApplicationController
       #   # format.html { render :show }
       #   format.json { render json: @location}
       # end
-
+      # render :show
       render json: @location
     end
 
 
     def create
-      @location = Location.new(location_params)
+      # binding.pry
+      # @location = Location.new(location_params)
+      @location = Location.create(location_aj)
 
-      if @location.save
-        redirect_to location_path(@location)
-      else
-        render :new
-      end
+      # if @location.save
+        # redirect_to location_path(@location)
+        render json: @location
+      # else
+      #   render :new
+      # end
     end
 
 
@@ -69,6 +72,10 @@ class LocationsController < ApplicationController
 
       def location_params
         params.require(:location).permit(:name, :city, :state, :address)
+      end
+
+      def location_aj
+        params.permit(:name, :city, :state, :address)
       end
 
 
