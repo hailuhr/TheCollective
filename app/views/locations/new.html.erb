@@ -5,13 +5,16 @@
       <%= pluralize(@location.errors.count, "error") %>
       prohibited this post from being saved: <br>
 
-    <% @location.errors.full_messages.each do |msg| %>
-      <%= msg %><br>
-    <% end %>
-  </div>
+        <% @location.errors.full_messages.each do |msg| %>
+          <%= msg %><br>
+        <% end %>
+
+    </div>
   <% end %>
 
+
 <div class="location_new">
+
   <%= form_for @location do |f| %>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
@@ -23,4 +26,5 @@
     <%= f.text_field :address %><br><br>
     <%= f.submit %>
  <% end %>
+
 </div>

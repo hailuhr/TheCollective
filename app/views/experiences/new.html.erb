@@ -1,33 +1,30 @@
 
 <div class="experience">
-<%= form_for @experience do |f| %>
-<%= f.hidden_field :user_id, value: "#{current_user.id}" %>
-<%= f.label :story %><br>
-<%= f.text_field :story %>
-<br><%= f.collection_select :location_id, @locations, :id, :name, include_blank: true %></br>
-
-<br>
-<br>
-
+    <%= form_for @experience do |f| %>
+        <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+        <%= f.label :Experience %><br>
+        <%= f.text_area :story %><br><br>
+    Location:
+        <%= f.collection_select :location_id, @locations, :id, :name, include_blank: true %></br>
+    <br>
 </div>
+
 
 <div class="location_new">
 
+  <p>New Location:</p>
 
-<%= f.fields_for :location do |location| %>
-<%= location.label :name %>
-<%= location.text_field :name %>
-<%= location.label :address %>
-<%= location.text_field :address %>
-<%= location.label :city %>
-<%= location.text_field :city %>
-<%= location.label :state %>
-<%= location.text_field :state %>
-<% end %>
- 
-<%= f.submit %>
-
-<% end %>
-
+      <%= f.fields_for :location do |location| %>
+          <%= location.label :name %>
+          <%= location.text_field :name %>
+          <%= location.label :address %>
+          <%= location.text_field :address %>
+          <%= location.label :city %>
+          <%= location.text_field :city %>
+          <%= location.label :state %>
+          <%= location.text_field :state %>
+          <% end %>
+      <%= f.submit %>
+      <% end %>
 
 </div>

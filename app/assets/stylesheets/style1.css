@@ -8,3 +8,7 @@
 body {
   /*background: black*/
 }
+
+div.ui.secondary.pointing.menu {
+  border: none !important;
+}
