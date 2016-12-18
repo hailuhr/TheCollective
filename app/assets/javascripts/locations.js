@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  // alert('ready');
   $("#view_locations").on("click", locationsList)
 
   $(".test").on("click", test)
@@ -32,7 +31,8 @@ function makeLocation(e){
       address: `${address}`
     },
     success: function(data) {
-      $("#show").text(data.name)
+      var location = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
+      $(".show").html(location)
     }
   })
 
@@ -70,15 +70,17 @@ function locationShow(e) {
     method: "GET",
     url: `/locations/${id}`,
     success: function(data){
-      var info = "Name: " + data.name + "Address: "+ data.address + "City: "+ data.city + "State: " + data.state
+      // var info = "Name: " + data.name + "Address: "+ data.address + "City: "+ data.city + "State: " + data.state
+      var string = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
 
-      $(".show").text(info)
+      $(".show").html(string)
+      var comments = document.createElement("div")
 
-      debugger
-
+      $(comments).attr('class', `comments`)
+      $(".show").append(comments)
       data.comments.forEach(function(comment) {
-        $(".comment").append("<br>")
-        $(".comment").append(comment.content)
+        $(".comments").append("<br>")
+        $(".comments").append(comment.content)
       })
     }
   })
