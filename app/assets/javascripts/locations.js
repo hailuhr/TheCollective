@@ -10,7 +10,47 @@ $(document).on('turbolinks:load', function() {
   $("body").on("click", "#new_location", newLocationForm)
 
   $("body").on("click", "#locationCreate", makeLocation)
+
+  $("#view_experiences").on("click", experiencesList)
 })
+
+
+
+function experiencesList(e){
+  e.preventDefault()
+
+  $.ajax({
+    method: "GET",
+    url: "/experiences",
+    success: function(data){
+      // debugger
+      var experiences = $(document.createElement("div"))
+      experiences.attr("class", "experiences")
+
+      $(".show").empty().prepend("<br><br>")
+      $(".show").append(experiences)
+
+      data.forEach(function(e){
+        var id = e.id
+        // var string = `<p>${e.story}<p>`
+        var link = $(document.createElement("a"))
+        link.attr('href', `/experiences/${id}`)
+        link.attr('class', `experience`)
+        link.attr('id', `${id}`)
+        link.text(e.story)
+
+
+        $(".experiences").append(link).append(`<p>`)
+      })
+
+    }
+  });
+
+}
+
+
+
+
 
 function makeLocation(e){
   e.preventDefault()
@@ -32,7 +72,8 @@ function makeLocation(e){
     },
     success: function(data) {
       var location = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
-      $(".show").html(location)
+      $(".show").empty().append("<br><br>")
+      $(".show").append(location)
     }
   })
 
@@ -41,13 +82,10 @@ function makeLocation(e){
 function newLocationForm(e) {
   e.preventDefault()
   // debugger;
-    $(".show").prepend(`<br>`)
-    $(".show").prepend(`<br>`)
-    $(".show").prepend(`<p></p>`)
-    $(".show").prepend(`<p></p>`)
+    $(".show").empty().prepend(`<br><br>`)
 
 
-    $(".show").html(`<label for="location_name">Name</label><br>
+    $(".show").append(`<label for="location_name">Name</label><br>
         <input type="text" name="location[name]" id="location_name" /><br>
         <label for="location_city">City</label><br>
         <input type="text" name="location[city]" id="location_city" /><br>
@@ -72,8 +110,8 @@ function locationShow(e) {
     success: function(data){
       // var info = "Name: " + data.name + "Address: "+ data.address + "City: "+ data.city + "State: " + data.state
       var string = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
-
-      $(".show").html(string)
+      $(".show").empty().append(`<br><br>`)
+      $(".show").append(string)
       var comments = document.createElement("div")
 
       $(comments).attr('class', `comments`)

@@ -7,12 +7,10 @@ class LocationsController < ApplicationController
 
     def show
       @location = Location.find_by_id(params[:id])
-      # respond_to do |format|
-      #   # format.html { render :show }
-      #   format.json { render json: @location}
-      # end
-      # render :show
-      render json: @location
+      respond_to do |format|
+        format.json { render json: @location}
+        format.html { render :show }
+      end
     end
 
 
@@ -21,12 +19,11 @@ class LocationsController < ApplicationController
       # @location = Location.new(location_params)
       @location = Location.create(location_aj)
 
-      # if @location.save
-        # redirect_to location_path(@location)
+      if @location.valid?
         render json: @location
-      # else
-      #   render :new
-      # end
+      else
+        render :new
+      end
     end
 
 
@@ -41,11 +38,6 @@ class LocationsController < ApplicationController
       redirect_to location_path(@location)
     end
 
-    def all
-      @all_locations = Location.all
-      render :"/locations/all"
-    end
-
 
     def index
       @locations = Location.all
@@ -53,7 +45,6 @@ class LocationsController < ApplicationController
         format.json { render json: @locations }
         format.html { render :index }
       end
-      # render json: @locations
     end
 
 

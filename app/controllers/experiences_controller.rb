@@ -1,5 +1,15 @@
 class ExperiencesController < ApplicationController
 
+    def index
+      @experiences = Experience.all
+
+      respond_to do |format|
+        format.json { render json: @experiences}
+        format.html { render :index }
+      end
+    end
+
+
 
     def new
       @experience = Experience.new
@@ -17,7 +27,6 @@ class ExperiencesController < ApplicationController
       # binding.pry
       if params[:experience][:location_id].empty?
         @experience = Experience.create(experience_params)
-        @experience.save
       else
         @experience = Experience.create(story: experience_params[:story], user_id: experience_params[:user_id], location_id: experience_params[:location_id])
       end
