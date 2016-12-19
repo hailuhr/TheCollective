@@ -1,16 +1,20 @@
-
-<div class="experience">
-    <%= form_for @experience do |f| %>
-        <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
-        <%= f.label :Experience %><br>
-        <%= f.text_area :story %><br><br>
-    Location:
-        <%= f.collection_select :location_id, @locations, :id, :name, include_blank: true %></br>
-    <br>
+<div>
+    <div class="ui small form">
+        <%= form_for @experience do |f| %>
+            <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+            <%= f.label :Experience %><br>
+            <%= f.text_area :story %><br><br>
+        Location:
+            <%= f.collection_select :location_id, @locations, :id, :name, include_blank: true, class: "ui dropdown" %></br>
+    </div>
 </div>
+<br>
+<br>
 
 
-<div class="location_new">
+
+
+<div class="ui small form">
 
   <p>New Location:</p>
 
@@ -24,7 +28,8 @@
           <%= location.label :state %>
           <%= location.text_field :state %>
           <% end %>
-      <%= f.submit %>
+            <br><br>
+            <%= f.submit :class => 'ui button' %>
       <% end %>
 
 </div>

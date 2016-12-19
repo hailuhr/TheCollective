@@ -3,16 +3,62 @@ $(document).on('turbolinks:load', function() {
 
   $(".test").on("click", test)
 
-
   $("body").on('click', '.location', locationShow)
-
 
   $("body").on("click", "#new_location", newLocationForm)
 
   $("body").on("click", "#locationCreate", makeLocation)
 
   $("#view_experiences").on("click", experiencesList)
+
+  $("body").on("click", "#find", findLocationForm)
+
+  $("body").on("click", "#find_experiences", findExperiences)
 })
+
+
+function findExperiences() {
+  // debugger
+  var locationName = $("#location_name").val()
+  var locationCity = $("#location_city").val()
+
+  $.ajax({
+    method: "GET",
+    url: "/search",
+    data: {
+      search: locationName
+    },
+    success: function(data) {
+      // debugger
+      $(".show").empty().prepend(`<br><br>`).append(`<p><strong>Experiences Found:</strong><p>`).append(`<br>`)
+      data.forEach(function(e) {
+        var id = e.id
+        var link = $(document.createElement("a"))
+        link.attr("href", `/experiences/${id}`)
+        link.attr("class", "experience")
+        link.text(e.story)
+        $(".show").append(link).append(`<br><br>`)
+      })
+
+    }
+  })
+}
+
+
+function findLocationForm(e) {
+  e.preventDefault()
+  // debugger
+  $(".show").empty().prepend(`<br><br>`)
+
+
+  $(".show").append(`<div class="ui small form"><label for="location_name"><strong>Find Experience By Location:</strong></label><br><br>
+      Location Name<br><input type="text" name="search" id="location_name" /><br>
+      <label for="location_city">Location City</label><br>
+      <input type="text" name="search" id="location_city" /><br><br>
+      <input type="submit" class="ui button" id="find_experiences" value="Find Experiences" data-disable-with="Find Experiences"/></div>`)
+
+}
+
 
 
 
@@ -85,15 +131,15 @@ function newLocationForm(e) {
     $(".show").empty().prepend(`<br><br>`)
 
 
-    $(".show").append(`<label for="location_name">Name</label><br>
-        <input type="text" name="location[name]" id="location_name" /><br>
+    $(".show").append(`<div class="ui small form"><label for="location_name">Name</label><br>
+        <input type="text" name="location[name]" id="location_name" /><br><br>
         <label for="location_city">City</label><br>
-        <input type="text" name="location[city]" id="location_city" /><br>
+        <input type="text" name="location[city]" id="location_city" /><br><br>
         <label for="location_state">State</label><br>
-        <input type="text" name="location[state]" id="location_state" /><br>
+        <input type="text" name="location[state]" id="location_state" /><br><br>
         <label for="location_address">Address</label><br>
         <input type="text" name="location[address]" id="location_address" /><br><br>
-        <input type="submit" id="locationCreate" value="Create Location" data-disable-with="Create Location"/>`)
+        <input type="submit" id="locationCreate" class="ui button" value="Create Location" data-disable-with="Create Location"/><div>`)
 
 }
 

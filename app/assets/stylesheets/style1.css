@@ -1,14 +1,37 @@
 *{
   margin: 0 auto;
   text-align: center;
-  /*background: lightblue*/
+
 }
 
 
 body {
-  /*background: black*/
+  background-color: lightblue;
+  /*background-size: contain;*/
+  background-position: center;
+
 }
 
 div.ui.secondary.pointing.menu {
   border: none !important;
+}
+
+div.ui.small.form {
+  width: 30%;
+}
+
+a:link {
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
+
+div.signing_in {
+  background-repeat: repeat-x;
+  min-height: 100vh;
+  width: 100% !important;
+  background-image: url('map.jpg') !important;
+  text-decoration-color: white;
 }

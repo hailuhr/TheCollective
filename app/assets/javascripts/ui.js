@@ -19,7 +19,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.m
 
   $(function () {
 
-      alert("got it")
+      // alert("got it")
 
       $('.ui.sidebar')
         .sidebar({

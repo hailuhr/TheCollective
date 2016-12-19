@@ -17,15 +17,14 @@
     </a>
 
     <a class="active item" href="/">
-      The Collective Home
+      The Collective
     </a>
+    <!-- <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Experience">
+      </div>
+    </div> -->
 
-    <a class="item" href="/locations">
-      Locations
-    </a>
-    <a class="item" href="/experiences">
-      Experiences
-    </a>
 
     <div class="right menu">
       <% if current_user %>
@@ -46,21 +45,21 @@
         <i class="home icon"></i>
         Home
       </a>
-      <a class="item">
-        <i class="block layout icon"></i>
-        Topics
+      <a class="item" id="find" href="/locations/search">
+        <i class="find icon" id="find"></i>
+        Find Location
       </a>
-      <a class="item">
-        <i class="smile icon"></i>
-        Friends
+      <a class="item" href="/locations">
+        <i class="map icon"></i>
+        All Locations
       </a>
-      <a class="item">
-        <i class="calendar icon"></i>
-        History
+      <a class="item" href="/experiences">
+        <i class="street view icon"></i>
+        All Experiences
       </a>
     </div>
-    <div class="pusher">
-      <div class="ui basic segment">
+    <div class="pusher landpage-image">
+      <div class="ui basic segment landpage-image">
 
         <%= yield %>
       </div>

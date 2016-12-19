@@ -49,11 +49,13 @@ class LocationsController < ApplicationController
 
 
     def search
+      # binding.pry
       if params[:search]
         if !(Location.search(params[:search]).nil?) && !(Location.search(params[:search]).empty?)
-          @experiences = Location.search(params[:search])
+          @response = Location.search(params[:search])
+          render json: @response
         else
-          @none_found = "none"
+          render plain: "No experiences found"
         end
       end
     end
@@ -66,7 +68,7 @@ class LocationsController < ApplicationController
       end
 
       def location_aj
-        params.permit(:name, :city, :state, :address)
+        params.permit(:name, :city, :state, :address, :search, :location_name, :location_city)
       end
 
 
