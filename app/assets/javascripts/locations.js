@@ -17,6 +17,9 @@ $(document).on('turbolinks:load', function() {
 })
 
 
+
+
+
 function findExperiences() {
   // debugger
   var locationName = $("#location_name").val()
@@ -100,12 +103,10 @@ function experiencesList(e){
 
 function makeLocation(e){
   e.preventDefault()
-  // debugger;
   var name = $("#location_name").val()
   var city = $("#location_city").val()
   var state = $("#location_state").val()
   var address = $("#location_address").val()
-  // debugger
 
   $.ajax({
     method: "POST",
@@ -117,9 +118,10 @@ function makeLocation(e){
       address: `${address}`
     },
     success: function(data) {
-      var location = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
+
+      var location = new Location({name: data.name, city: data.city, address: data.address, state: data.state})
       $(".show").empty().append("<br><br>")
-      $(".show").append(location)
+      $(".show").append(location.makeHtml())
     }
   })
 
