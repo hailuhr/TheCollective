@@ -3,4 +3,5 @@ class LocationSerializer < ActiveModel::Serializer
 
   has_many :comments
 
+  has_many :experiences
 end
