@@ -51,7 +51,14 @@ class ExperiencesController < ApplicationController
       redirect_to experience_path(@experience)
     end
 
+    def user_index
+      # binding.pry
+      @experiences = Experience.where(user_id: current_user.id)
+      @locations = []
+      @experiences.each{|e| @locations << e.location}
 
+      render :user_index
+    end
 
 
     private

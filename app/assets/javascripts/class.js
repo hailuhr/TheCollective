@@ -1,6 +1,5 @@
 function Location(attributes) {
-  // debugger
-  this.id = attributes.id
+  this.id = attributes.id;
   this.name = attributes.name;
   this.address = attributes.address;
   this.city = attributes.city;

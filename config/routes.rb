@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get "search" => "locations#search"
 
+  get "user_index" => "experiences#user_index"
 
   resources :locations, only: [:show, :index, :edit] do
     resources :comments, only: [:show, :create, :new]

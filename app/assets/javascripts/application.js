@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery.turbolinks
+
 //= require jquery_ujs
+
 //= require ui
 //= require class
 //= require locations
+
 //= require_tree
 //= require turbolinks
