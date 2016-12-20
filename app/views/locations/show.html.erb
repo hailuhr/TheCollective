@@ -1,10 +1,10 @@
 
 <div class="location_show">
-  Location:<br>
-<%= @location.name %><br>
-<%= @location.city %><br>
-<%= @location.state %><br>
-<%= @location.address %><br>
+  <h5>Location:</h5>
+    <%= @location.name %><br>
+    <%= @location.city %><br>
+    <%= @location.state %><br>
+    <%= @location.address %><br>
 </div>
 
 <br>
@@ -12,7 +12,7 @@
 
 
 <div class="location_experiences">
-  The Collective Experience(s): <br><br>
+  <h5>The Collective Experience(s): <h5>
       <% @location.experiences.each do |exp| %>
       <%= exp.story %><br>
       <br>
@@ -28,9 +28,7 @@
 
 <div class="location_comments">
 
-      Latest Comment:
-      <br>
-      <br>
+      <p>Latest Comment:</p>
 
       <% @location.comments.each do |comment| %>
           <%= link_to comment.content, location_comment_path(comment) %><br>

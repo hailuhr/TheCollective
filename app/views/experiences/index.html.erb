@@ -1,12 +1,14 @@
-<div class="experiences">
-  <br><br>
+<div class="show">
+      <div class="experiences">
+      <br><br>
 
-  <h2 class="all_experiences"><strong> The Collective Experience </strong></h2>
+      <h2 class="all_experiences"><strong> The Collective Experience </strong></h2>
 
-    <br>
-    <p>All Experiences:</p>
-      <% Experience.all.each do |experience| %>
-        <p><%= link_to experience.story, experience_path(experience)%> </p>
-      <% end %>
+        <br>
+        <p>All Experiences:</p>
+          <% Experience.all.each do |experience| %>
+            <p><%= link_to experience.story, experience_path(experience)%> </p>
+          <% end %>
 
+    </div>
 </div>

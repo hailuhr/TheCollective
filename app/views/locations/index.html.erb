@@ -1,11 +1,13 @@
+<div class="show">
 
-<div class="locations">
-  <br><br>
+    <div class="locations">
+      <br><br>
 
-      <p class="all_locations"><strong> All Locations </strong></p>
+          <p class="all_locations"><strong> All Locations </strong></p>
 
-      <% @locations.each do |location| %>
-        <p><%= link_to location.name, location_path(location)%></p>
-      <% end %>
+          <% @locations.each do |location| %>
+            <p><%= link_to location.name, location_path(location)%></p>
+          <% end %>
 
+  </div>
 </div>

@@ -28,6 +28,10 @@ a:hover {
   color: blue;
 }
 
+div.button {
+  padding: 20px
+}
+
 div.signing_in {
   /*background-repeat: repeat-x;
   min-height: 100vh;

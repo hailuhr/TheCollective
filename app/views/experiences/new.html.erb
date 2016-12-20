@@ -2,8 +2,8 @@
     <div class="ui small form">
         <%= form_for @experience do |f| %>
             <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
-            <%= f.label :Experience %><br>
-            <%= f.text_area :story %><br><br>
+            <!-- <%= f.label :Experience %><br> -->
+            <h5><strong>New Experience: </strong></h5><%= f.text_area :story %><br><br>
         Location:
             <%= f.collection_select :location_id, @locations, :id, :name, include_blank: true, class: "ui dropdown" %></br>
     </div>

@@ -1,4 +1,7 @@
 $(document).on('turbolinks:load', function() {
+
+  $("body").on("click", "#find", findLocationForm)
+
   $("#view_locations").on("click", locationsList)
 
   $(".test").on("click", test)
@@ -11,41 +14,60 @@ $(document).on('turbolinks:load', function() {
 
   $("#view_experiences").on("click", experiencesList)
 
-  $("body").on("click", "#find", findLocationForm)
-
-  $("body").on("click", "#find_experiences", findExperiences)
+  $("body").on("click", "#button", findExperiences)
 
   $("body").on("click", "#comment", postComment)
 
   $("body").on("click", ".post", post)
+
+  $("body").on("click", "#edit", editPage)
+
 })
 
 
+
+function editPage(){
+
+}
 
 
 
 function findExperiences() {
   // debugger
-  var locationName = $("#location_name").val()
+  // var locationName = $("#location_name").val()
   var locationCity = $("#location_city").val()
 
   $.ajax({
     method: "GET",
     url: "/search",
     data: {
-      search: locationName
+      search: locationCity
     },
     success: function(data) {
       // debugger
-      $(".show").empty().prepend(`<br><br>`).append(`<p><strong>Experiences Found:</strong><p>`).append(`<br>`)
-      data.forEach(function(e) {
-        var id = e.id
-        var link = $(document.createElement("a"))
-        link.attr("href", `/experiences/${id}`)
-        link.attr("class", "experience")
-        link.text(e.story)
-        $(".show").append(link).append(`<br><br>`)
-      })
+      $(".searchDiv").empty()
+      // $(".show").empty().prepend(`<br><br>`).append(`<p><strong>Experiences Found:</strong><p>`).append(`<br>`)
+      var searchDiv = $(document.createElement("div"))
+
+      searchDiv.attr("class", "searchDiv")
+
+
+      if (data == "No experiences found") {
+        $(".show").append($(searchDiv).append(`<br>No Experiences Found At This Location`))
+      } else {
+        $(".show").append($(searchDiv).append(`<br><h5><u>Experiences Found:</u></h5><br>`))
+
+        data.forEach(function(e) {
+          var id = e.id
+          var link = $(document.createElement("a"))
+          link.attr("href", `/experiences/${id}`)
+          link.attr("class", "experience")
+          link.text(e.story)
+          $(searchDiv).append(link).append(`<br><br>`)
+          $(".show").append(searchDiv)
+        })
+
+      }
 
     }
   })
@@ -53,16 +75,21 @@ function findExperiences() {
 
 
 function findLocationForm(e) {
-  e.preventDefault()
   // debugger
+  e.preventDefault()
   $(".show").empty().prepend(`<br><br>`)
 
+  // $(".show").append(`<div class="ui small form"><label for="location_name"><strong>Find Experience By Location:</strong></label><br><br>
+  //     <label for="location_city">Location City: </label><br>
+  //     <input type="text" class="ui input" name="search" id="location_city" placeholder="Search..."/><br><br>
+  //     <input type="submit" class="ui button" id="find_experiences" value="Find Experiences" data-disable-with="Find Experiences"/></div>`)
+  //     // Location Name<br><input type="text" name="search" id="location_name" /><br>
 
-  $(".show").append(`<div class="ui small form"><label for="location_name"><strong>Find Experience By Location:</strong></label><br><br>
-      Location Name<br><input type="text" name="search" id="location_name" /><br>
-      <label for="location_city">Location City</label><br>
-      <input type="text" name="search" id="location_city" /><br><br>
-      <input type="submit" class="ui button" id="find_experiences" value="Find Experiences" data-disable-with="Find Experiences"/></div>`)
+  $(".show").append(`<div class="i">
+    <label for="location_name"><p>Find Experience By Location:</p><br></label></div><div class="ui transparent icon input"><br>
+    <input type="text" id="location_city" placeholder="Search..." id="find_experiences">
+    <div class="button" id="button"><i class="search icon" id="button"><p></p></div></i>
+    </div>`)
 
 }
 
@@ -80,7 +107,7 @@ function experiencesList(e){
       var experiences = $(document.createElement("div"))
       experiences.attr("class", "experiences")
 
-      $(".show").empty().prepend("<br><br>")
+      $(".show").empty().prepend("<br><br>").append(`<h4>All Experiences</h4>`)
       $(".show").append(experiences)
 
       data.forEach(function(e){
@@ -93,7 +120,7 @@ function experiencesList(e){
         link.text(e.story)
 
 
-        $(".experiences").append(link).append(`<p>`)
+        $(".experiences").append(link).append(`<br>`)
       })
 
     }
@@ -138,13 +165,13 @@ function newLocationForm(e) {
     $(".show").empty().prepend(`<br><br>`)
 
 
-    $(".show").append(`<div class="ui small form"><label for="location_name">Name</label><br>
+    $(".show").append(`<div class="ui small form"><h5>New Location</h5><label for="location_name"><strong>Name</strong></label><br>
         <input type="text" name="location[name]" id="location_name" /><br><br>
-        <label for="location_city">City</label><br>
+        <label for="location_city"><strong>City</strong></label><br>
         <input type="text" name="location[city]" id="location_city" /><br><br>
-        <label for="location_state">State</label><br>
+        <label for="location_state"><strong>State</strong></label><br>
         <input type="text" name="location[state]" id="location_state" /><br><br>
-        <label for="location_address">Address</label><br>
+        <label for="location_address"><strong>Address</strong></label><br>
         <input type="text" name="location[address]" id="location_address" /><br><br>
         <input type="submit" id="locationCreate" class="ui button" value="Create Location" data-disable-with="Create Location"/><div>`)
 
@@ -164,6 +191,7 @@ function locationShow(e) {
     url: `/locations/${id}`,
     success: function(data){
       // debugger
+      var dataId = data.id
       // var info = "Name: " + data.name + "Address: "+ data.address + "City: "+ data.city + "State: " + data.state
       var string = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
       $(".show").empty().append(`<br><br>`)
@@ -191,8 +219,14 @@ function locationShow(e) {
         $(".comments").append(comment.content).append(`<br>`)
       })
 
-      $(".comments").append(`<br>`).append(`<input type="submit" name="comment" id="comment" value="Post New Comment" class="mini ui button" data-disable-with="Post New Comment">`)
-      $(".comments").append(`<br>`).append(`<input type="submit" name="editLocation" id="${data.id}" value="Edit Location" class="mini ui button" data-disable-with="Edit Location">`)
+
+      $(".comments").append(`<br>`).append(`<div class="mini ui basic buttons">
+        <div class="ui button" id="comment">Comment</div>
+        <div class="ui button" id="location" onclick="window.location.href='/locations/${dataId}/edit'">Edit Location</div>
+      </div>`)
+
+      // $(".comments").append(`<br>`).append(`<input type="submit" name="comment" id="comment" value="Post New Comment" class="mini ui button" data-disable-with="Post New Comment">`)
+      // $(".comments").append(`<br>`).append(`<input type="submit" name="editLocation" id="${data.id}" value="Edit Location" class="mini ui button" data-disable-with="Edit Location">`)
     }
   })
 }
@@ -224,10 +258,10 @@ function locationsList(e) {
     success: function(data){
       // debugger;
       $(".show").empty()
-      $(".show").prepend("<br><br>")
+      $(".show").prepend("<br><br>").append(`<h4>All Locations</h4>`)
       data.forEach(function(location_params){
         var location = new Location(location_params)
-        $(".show").append(`<br><br>`).append(location.indexHtml())
+        $(".show").append(location.indexHtml()).append(`<br>`)
 
       })
 
