@@ -86,6 +86,13 @@ function findExperiences() {
 function findLocationForm(e) {
   // debugger
   e.preventDefault()
+  $("#google").remove()
+  $(".show").remove()
+  var showDiv = document.createElement(`div`);
+  $(showDiv).attr(`class`, "show").append(`<br><br>`)
+  $(".home_page").append(showDiv)
+
+  
   $(".show").empty().prepend(`<br><br>`)
 
   // $(".show").append(`<div class="ui small form"><label for="location_name"><strong>Find Experience By Location:</strong></label><br><br>
