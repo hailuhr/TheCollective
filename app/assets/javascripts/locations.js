@@ -113,7 +113,7 @@ function experiencesList(e){
   $(".show").remove()
   var showDiv = document.createElement(`div`);
   $(showDiv).attr(`class`, "show").append(`<br><br>`)
-  $(".home").append(showDiv)
+  $(".home_page").append(showDiv)
 
   $.ajax({
     method: "GET",
@@ -187,7 +187,7 @@ function newLocationForm(e) {
     $(".show").empty()
     var showDiv = document.createElement(`div`);
     $(showDiv).attr(`class`, "show").append(`<br><br>`)
-    $(".home").append(showDiv)
+    $(".home_page").append(showDiv)
 
     $(".show").append(`<div class="ui small form"><h5>New Location</h5><label for="location_name"><strong>Name</strong></label><br>
         <input type="text" class="location_class" name="location[name]" id="location_name" /><br><br>
@@ -284,7 +284,7 @@ function locationsList(e) {
   $(".show").remove()
   var showDiv = document.createElement(`div`);
   $(showDiv).attr(`class`, "show").append(`<br><br>`)
-  $(".home").append(showDiv)
+  $(".home_page").append(showDiv)
 
   $.ajax({
     method: "GET",

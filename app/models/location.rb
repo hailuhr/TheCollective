@@ -29,8 +29,10 @@ class Location < ApplicationRecord
     # -----------------------------------------
 
   def self.search(search)
-    if self.find_by(:city => "#{search}")
-      self.find_by(:city => "#{search}").experiences
+
+    search_term = search.split(" ").map{|l| l.capitalize}.join(" ")
+    if self.find_by(:city => search_term)
+      self.find_by(:city => search_term).experiences
     else
       nil
     end

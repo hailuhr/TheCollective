@@ -34,7 +34,6 @@ class ExperiencesController < ApplicationController
 
 
     def create
-      # binding.pry
       if params[:experience][:location_id].empty?
         @experience = Experience.create(experience_params)
       else
