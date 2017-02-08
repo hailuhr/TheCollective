@@ -15,16 +15,25 @@
 
 <div class="location_new">
 
-  <%= form_for @location do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-    <%= f.label :city %><br>
-    <%= f.text_field :city %><br>
-    <%= f.label :state %><br>
-    <%= f.text_field :state %><br>
-    <%= f.label :address %><br>
-    <%= f.text_field :address %><br><br>
-    <%= f.submit %>
- <% end %>
+  <div class="ui small form">
 
+      <h3> New Location </h3>
+      <br>
+      <br>
+
+      <%= form_for @location, html: {class: "ui small form"} do |f| %>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %><br>
+        <%= f.label :city %><br>
+        <%= f.text_field :city %><br>
+        <%= f.label :state %><br>
+        <%= f.text_field :state %><br>
+        <%= f.label :address %><br>
+        <%= f.text_field :address %><br><br>
+        <%= f.label :zipcode %><br>
+        <%= f.text_field :zipcode %><br><br>
+        <%= f.submit class: "ui button" %>
+     <% end %>
+
+    </div>
 </div>

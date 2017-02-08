@@ -1,5 +1,16 @@
 class LocationsController < ApplicationController
 
+    def geocode
+
+      locations = Location.geocoded
+
+      location_latitudes = locations.map{ |l| {lng: l.longitude, lat: l.latitude} }
+      # binding.pry
+
+      render json: location_latitudes
+      # render json: locations
+    end
+
     def new
       @location = Location.new
     end
@@ -15,12 +26,15 @@ class LocationsController < ApplicationController
 
 
     def create
-      # binding.pry
-      # @location = Location.new(location_params)
-      @location = Location.create(location_aj)
+      @location = Location.new(location_params)
+      # @location = Location.new(location_aj)
+      binding.pry
 
+      @location.geocode
+      @location.save
       if @location.valid?
-        render json: @location
+        render :show
+        # render json: @location
       else
         render :new
       end
@@ -64,7 +78,7 @@ class LocationsController < ApplicationController
     private
 
       def location_params
-        params.require(:location).permit(:name, :city, :state, :address)
+        params.require(:location).permit(:name, :city, :state, :address, :location_name, :locatoin_city)
       end
 
       def location_aj

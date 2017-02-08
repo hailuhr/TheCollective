@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root :to => "application#home"
 
+  get "locations/geocode" => "locations#geocode"
+
   resources :experiences
   resources :locations
 
@@ -17,11 +19,13 @@ Rails.application.routes.draw do
 
   get "search" => "locations#search"
 
-  get "user_index" => "experiences#user_index"
-
   resources :locations, only: [:show, :index, :edit] do
     resources :comments, only: [:show, :create, :new]
   end
+
+
+
+  get "user_experiences" => "experiences#user_index"
 
 
 end

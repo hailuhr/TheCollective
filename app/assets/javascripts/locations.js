@@ -4,11 +4,9 @@ $(document).on('turbolinks:load', function() {
 
   $("#view_locations").on("click", locationsList)
 
-  $(".test").on("click", test)
-
   $("body").on('click', '.location', locationShow)
 
-  $("body").on("click", "#new_location", newLocationForm)
+  // $("body").on("click", "#new_location", newLocationForm)
 
   $("body").on("click", "#locationCreate", makeLocation)
 
@@ -20,22 +18,34 @@ $(document).on('turbolinks:load', function() {
 
   $("body").on("click", ".post", post)
 
-  $("body").on("click", "#edit", editPage)
+  // $("body").on("click", "#edit", editPage)
 
+  $("body").on("click", "#my_experiences", myExperiences)
 })
 
 
+function myExperiences(e){
+  e.preventDefault()
 
-function editPage(){
-
+  $.ajax({
+    method: "GET",
+    url: "/user_experiences",
+    success: function(data) {
+      data.forEach(info => {
+        var experience = new Experience(info)
+        $(".show").append(experience.makeHtml())
+      })
+    }
+  })
 }
 
 
 
+
 function findExperiences() {
-  // debugger
   // var locationName = $("#location_name").val()
   var locationCity = $("#location_city").val()
+
 
   $.ajax({
     method: "GET",
@@ -44,7 +54,6 @@ function findExperiences() {
       search: locationCity
     },
     success: function(data) {
-      // debugger
       $(".searchDiv").empty()
       // $(".show").empty().prepend(`<br><br>`).append(`<p><strong>Experiences Found:</strong><p>`).append(`<br>`)
       var searchDiv = $(document.createElement("div"))
@@ -121,6 +130,7 @@ function experiencesList(e){
 
 
         $(".experiences").append(link).append(`<br>`)
+        // make experience object
       })
 
     }
@@ -133,12 +143,15 @@ function experiencesList(e){
 
 
 function makeLocation(e){
+
   e.preventDefault()
+
   var name = $("#location_name").val()
   var city = $("#location_city").val()
   var state = $("#location_state").val()
   var address = $("#location_address").val()
 
+  debugger;
   $.ajax({
     method: "POST",
     url: "/locations",
@@ -150,7 +163,6 @@ function makeLocation(e){
     },
     success: function(data) {
       // debugger;
-
       var location = new Location(data)
       $(".show").empty().append("<br><br>")
       $(".show").append(location.makeHtml())
@@ -159,20 +171,32 @@ function makeLocation(e){
 
 }
 
+
 function newLocationForm(e) {
   e.preventDefault()
   // debugger;
-    $(".show").empty().prepend(`<br><br>`)
+  $("#google").remove()
 
+    $(".show").empty()
+    var showDiv = document.createElement(`div`);
+    $(showDiv).attr(`class`, "show").append(`<br><br>`)
+    $(".home").append(showDiv)
 
     $(".show").append(`<div class="ui small form"><h5>New Location</h5><label for="location_name"><strong>Name</strong></label><br>
-        <input type="text" name="location[name]" id="location_name" /><br><br>
+        <input type="text" class="location_class" name="location[name]" id="location_name" /><br><br>
+
         <label for="location_city"><strong>City</strong></label><br>
         <input type="text" name="location[city]" id="location_city" /><br><br>
-        <label for="location_state"><strong>State</strong></label><br>
-        <input type="text" name="location[state]" id="location_state" /><br><br>
+
+        <label for="location_state"><strong>Country</strong></label><br>
+        <input type="text" name="location[country]" id="location_country" /><br><br>
+
         <label for="location_address"><strong>Address</strong></label><br>
         <input type="text" name="location[address]" id="location_address" /><br><br>
+
+        <label for="location_address"><strong>Zipcode</strong></label><br>
+        <input type="text" name="location[zipcode]" id="location_zipcode" /><br><br>
+
         <input type="submit" id="locationCreate" class="ui button" value="Create Location" data-disable-with="Create Location"/><div>`)
 
 }
@@ -222,11 +246,9 @@ function locationShow(e) {
 
       $(".comments").append(`<br>`).append(`<div class="mini ui basic buttons">
         <div class="ui button" id="comment">Comment</div>
-        <div class="ui button" id="location" onclick="window.location.href='/locations/${dataId}/edit'">Edit Location</div>
+        <div class="ui button" id="location" onclick="window.location.href='/locations/${data}'">Edit Location</div>
       </div>`)
 
-      // $(".comments").append(`<br>`).append(`<input type="submit" name="comment" id="comment" value="Post New Comment" class="mini ui button" data-disable-with="Post New Comment">`)
-      // $(".comments").append(`<br>`).append(`<input type="submit" name="editLocation" id="${data.id}" value="Edit Location" class="mini ui button" data-disable-with="Edit Location">`)
     }
   })
 }
@@ -250,13 +272,11 @@ function post() {
 
 function locationsList(e) {
   e.preventDefault()
-  // debugger;
 
   $.ajax({
     method: "GET",
     url: "/locations",
     success: function(data){
-      // debugger;
       $(".show").empty()
       $(".show").prepend("<br><br>").append(`<h4>All Locations</h4>`)
       data.forEach(function(location_params){
@@ -267,11 +287,4 @@ function locationsList(e) {
 
     }
   });
-}
-
-
-function test() {
-  // alert("lakjdfs")
-  // $(".home").prepend("adlkjfslf")
-
 }

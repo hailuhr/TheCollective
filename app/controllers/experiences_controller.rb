@@ -10,6 +10,16 @@ class ExperiencesController < ApplicationController
     end
 
 
+    def user_index
+      # binding.pry
+      @experiences = current_user.experiences
+
+      respond_to do |format|
+        format.json { render json: @experiences}
+        format.html { render :user_index }
+      end
+    end
+
 
     def new
       @experience = Experience.new
@@ -51,14 +61,14 @@ class ExperiencesController < ApplicationController
       redirect_to experience_path(@experience)
     end
 
-    def user_index
-      # binding.pry
-      @experiences = Experience.where(user_id: current_user.id)
-      @locations = []
-      @experiences.each{|e| @locations << e.location}
-
-      render :user_index
-    end
+    # def user_index
+    #   # binding.pry
+    #   @experiences = Experience.where(user_id: current_user.id)
+    #   @locations = []
+    #   @experiences.each{|e| @locations << e.location}
+    #
+    #   render :user_index
+    # end
 
 
     private

@@ -1,3 +1,5 @@
+"use strict"
+
 function Location(attributes) {
   this.id = attributes.id;
   this.name = attributes.name;
@@ -27,4 +29,21 @@ function Location(attributes) {
     link.text(this.name)
     return link
   }
+}
+
+
+class Experience {
+  constructor(attributes){
+    this.id = attributes.id
+    this.story = attributes.story
+    this.user_id = attributes.user_id
+    this.location_id = attributes.location_id
+  }
+
+  makeHtml(){
+    var string = `<p>${this.story}</p>`
+    return string
+  }
+
+
 }
