@@ -107,6 +107,13 @@ function findLocationForm(e) {
 
 function experiencesList(e){
   e.preventDefault()
+  $("#google").remove()
+
+
+  $(".show").remove()
+  var showDiv = document.createElement(`div`);
+  $(showDiv).attr(`class`, "show").append(`<br><br>`)
+  $(".home").append(showDiv)
 
   $.ajax({
     method: "GET",
@@ -151,7 +158,7 @@ function makeLocation(e){
   var state = $("#location_state").val()
   var address = $("#location_address").val()
 
-  debugger;
+  // debugger;
   $.ajax({
     method: "POST",
     url: "/locations",
@@ -272,6 +279,12 @@ function post() {
 
 function locationsList(e) {
   e.preventDefault()
+  $("#google").remove()
+
+  $(".show").remove()
+  var showDiv = document.createElement(`div`);
+  $(showDiv).attr(`class`, "show").append(`<br><br>`)
+  $(".home").append(showDiv)
 
   $.ajax({
     method: "GET",
