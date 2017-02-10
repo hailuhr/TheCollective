@@ -63,7 +63,7 @@ class LocationsController < ApplicationController
 
 
     def search
-      binding.pry
+      # binding.pry
       if params[:search]
         if !(Location.search(params[:search]).nil?) && !(Location.search(params[:search]).empty?)
           @response = Location.search(params[:search])

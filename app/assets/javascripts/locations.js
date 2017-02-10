@@ -86,26 +86,18 @@ function findExperiences() {
 function findLocationForm(e) {
   // debugger
   e.preventDefault()
-  $("#google").remove()
-  $(".show").remove()
-  var showDiv = document.createElement(`div`);
-  $(showDiv).attr(`class`, "show").append(`<br><br>`)
-  $(".home_page").append(showDiv)
 
-  
-  $(".show").empty().prepend(`<br><br>`)
+   $("#google").remove()
 
-  // $(".show").append(`<div class="ui small form"><label for="location_name"><strong>Find Experience By Location:</strong></label><br><br>
-  //     <label for="location_city">Location City: </label><br>
-  //     <input type="text" class="ui input" name="search" id="location_city" placeholder="Search..."/><br><br>
-  //     <input type="submit" class="ui button" id="find_experiences" value="Find Experiences" data-disable-with="Find Experiences"/></div>`)
-  //     // Location Name<br><input type="text" name="search" id="location_name" /><br>
+    $(".show").remove()
+    var showDiv = document.createElement(`div`);
+    $(showDiv).attr(`class`, "show").append(`<br><br><div class="i">
+      <label for="location_name"><p>Find Experience By Location:</p><br></label></div><div class="ui transparent icon input"><br>
+      <input type="text" id="location_city" placeholder="Search..." id="find_experiences">
+      <div class="button" id="button"><i class="search icon" id="button"><p></p></div></i>
+      </div>`)
 
-  $(".show").append(`<div class="i">
-    <label for="location_name"><p>Find Experience By Location:</p><br></label></div><div class="ui transparent icon input"><br>
-    <input type="text" id="location_city" placeholder="Search..." id="find_experiences">
-    <div class="button" id="button"><i class="search icon" id="button"><p></p></div></i>
-    </div>`)
+        $(".pusher").append(showDiv)
 
 }
 

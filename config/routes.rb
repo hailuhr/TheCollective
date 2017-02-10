@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   get "locations/geocode" => "locations#geocode"
 
+  get "search" => "locations#search"
+  # get "locations/search" => "locations#search"
+
+
   resources :experiences
   resources :locations
 
@@ -17,7 +21,6 @@ Rails.application.routes.draw do
   resources :user
 
 
-  get "search" => "locations#search"
 
   resources :locations, only: [:show, :index, :edit] do
     resources :comments, only: [:show, :create, :new]
