@@ -43,7 +43,6 @@ function myExperiences(e){
 
 
 function findExperiences() {
-  // var locationName = $("#location_name").val()
   var locationCity = $("#location_city").val()
 
 
@@ -55,7 +54,6 @@ function findExperiences() {
     },
     success: function(data) {
       $(".searchDiv").empty()
-      // $(".show").empty().prepend(`<br><br>`).append(`<p><strong>Experiences Found:</strong><p>`).append(`<br>`)
       var searchDiv = $(document.createElement("div"))
 
       searchDiv.attr("class", "searchDiv")
@@ -84,7 +82,6 @@ function findExperiences() {
 
 
 function findLocationForm(e) {
-  // debugger
   e.preventDefault()
 
    $("#google").remove()
@@ -118,7 +115,6 @@ function experiencesList(e){
     method: "GET",
     url: "/experiences",
     success: function(data){
-      // debugger
       var experiences = $(document.createElement("div"))
       experiences.attr("class", "experiences")
 
@@ -127,7 +123,6 @@ function experiencesList(e){
 
       data.forEach(function(e){
         var id = e.id
-        // var string = `<p>${e.story}<p>`
         var link = $(document.createElement("a"))
         link.attr('href', `/experiences/${id}`)
         link.attr('class', `experience`)
@@ -136,7 +131,6 @@ function experiencesList(e){
 
 
         $(".experiences").append(link).append(`<br>`)
-        // make experience object
       })
 
     }
@@ -157,7 +151,6 @@ function makeLocation(e){
   var state = $("#location_state").val()
   var address = $("#location_address").val()
 
-  // debugger;
   $.ajax({
     method: "POST",
     url: "/locations",
@@ -168,7 +161,6 @@ function makeLocation(e){
       address: address
     },
     success: function(data) {
-      // debugger;
       var location = new Location(data)
       $(".show").empty().append("<br><br>")
       $(".show").append(location.makeHtml())
@@ -180,7 +172,6 @@ function makeLocation(e){
 
 function newLocationForm(e) {
   e.preventDefault()
-  // debugger;
   $("#google").remove()
 
     $(".show").empty()
@@ -210,7 +201,6 @@ function newLocationForm(e) {
 
 
 function locationShow(e) {
-  // debugger;
 
   e.preventDefault()
 
@@ -220,9 +210,7 @@ function locationShow(e) {
     method: "GET",
     url: `/locations/${id}`,
     success: function(data){
-      // debugger
       var dataId = data.id
-      // var info = "Name: " + data.name + "Address: "+ data.address + "City: "+ data.city + "State: " + data.state
       var string = `<p>Name: ${data.name}.</p><p> Address: ${data.address}.</p><p>City: ${data.city}.</p><p>State: ${data.state}</p>`
       $(".show").empty().append(`<br><br>`)
       $(".show").append(`<h5>Location:</h5>`).append(string)
@@ -260,7 +248,6 @@ function locationShow(e) {
 }
 
 function postComment() {
-  // debugger;
   $(".post").remove()
   $(".postDiv").empty()
   var postDiv = document.createElement(`div`)
