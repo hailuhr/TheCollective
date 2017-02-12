@@ -5,10 +5,8 @@ class LocationsController < ApplicationController
       locations = Location.geocoded
 
       location_latitudes = locations.map{ |l| {lng: l.longitude, lat: l.latitude} }
-      # binding.pry
 
       render json: location_latitudes
-      # render json: locations
     end
 
     def new
@@ -26,16 +24,13 @@ class LocationsController < ApplicationController
 
 
     def create
-      binding.pry
 
       @location = Location.new(location_params)
-      # @location = Location.new(location_aj)
+       @location.save
+      binding.pry
 
-      @location.geocode
-      @location.save
       if @location.valid?
         render :show
-        # render json: @location
       else
         render :new
       end

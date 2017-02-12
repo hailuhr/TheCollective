@@ -34,6 +34,7 @@ class ExperiencesController < ApplicationController
 
 
     def create
+      binding.pry
       if params[:experience][:location_id].empty?
         @experience = Experience.create(experience_params)
       else
@@ -73,7 +74,7 @@ class ExperiencesController < ApplicationController
     private
 
       def experience_params
-          params.require(:experience).permit(:story, :user_id, :location_id, location_attributes: [:name, :city, :state, :address])
+          params.require(:experience).permit(:story, :user_id, :location_id, location_attributes: [:name, :city, :country, :zipcode, :address])
       end
 
 
