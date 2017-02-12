@@ -24,15 +24,16 @@
       <%= form_for @location, html: {class: "ui small form"} do |f| %>
         <%= f.label :name %><br>
         <%= f.text_field :name %><br>
-        <%= f.label :city %><br>
-        <%= f.text_field :city %><br>
-        <%= f.label :state %><br>
-        <%= f.text_field :state %><br>
         <%= f.label :address %><br>
         <%= f.text_field :address %><br><br>
         <%= f.label :zipcode %><br>
         <%= f.text_field :zipcode %><br><br>
+        <%= f.label :city %><br>
+        <%= f.text_field :city %><br>
+        <%= f.label :country %><br>
+        <%= f.text_field :country %><br><br>     
         <%= f.submit class: "ui button" %>
+
      <% end %>
 
     </div>

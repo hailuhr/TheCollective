@@ -26,9 +26,10 @@ class LocationsController < ApplicationController
 
 
     def create
+      binding.pry
+
       @location = Location.new(location_params)
       # @location = Location.new(location_aj)
-      # binding.pry
 
       @location.geocode
       @location.save
@@ -78,11 +79,7 @@ class LocationsController < ApplicationController
     private
 
       def location_params
-        params.require(:location).permit(:name, :city, :state, :address, :location_name, :locatoin_city)
-      end
-
-      def location_aj
-        params.permit(:name, :city, :state, :address, :search, :location_name, :location_city)
+        params.require(:location).permit(:search, :name, :city, :address, :zipcode, :country)
       end
 
 

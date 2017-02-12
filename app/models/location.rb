@@ -9,7 +9,7 @@ class Location < ApplicationRecord
 
 
 
-  # validates_presence_of :name, :city, :country, :zipcode, :address
+  # validates_presence_of :name, :address, :city, :zipcode, :country 
 
     # -----------------------------------------
       # with an attributes
@@ -27,6 +27,7 @@ class Location < ApplicationRecord
     end
 
     # -----------------------------------------
+
 
   def self.search(search)
 
