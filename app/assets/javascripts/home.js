@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function() {
 
+
+
       $.ajax({
         method: "GET",
         url: "/locations/geocode",
@@ -10,7 +12,10 @@ $(document).on('turbolinks:load', function() {
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
         })
-
+      //
+        google.maps.event.addDomListener(marker, 'click', function() {
+            alert("something")
+        })
       }
     });
 

@@ -11,7 +11,6 @@ class ExperiencesController < ApplicationController
 
 
     def user_index
-      # binding.pry
       @experiences = current_user.experiences
 
       respond_to do |format|
@@ -34,7 +33,6 @@ class ExperiencesController < ApplicationController
 
 
     def create
-      binding.pry
       if params[:experience][:location_id].empty?
         @experience = Experience.create(experience_params)
       else
@@ -60,15 +58,6 @@ class ExperiencesController < ApplicationController
       @experience.update(experience_params)
       redirect_to experience_path(@experience)
     end
-
-    # def user_index
-    #   # binding.pry
-    #   @experiences = Experience.where(user_id: current_user.id)
-    #   @locations = []
-    #   @experiences.each{|e| @locations << e.location}
-    #
-    #   render :user_index
-    # end
 
 
     private

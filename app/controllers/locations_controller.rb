@@ -27,8 +27,6 @@ class LocationsController < ApplicationController
 
       @location = Location.new(location_params)
        @location.save
-      binding.pry
-
       if @location.valid?
         render :show
       else

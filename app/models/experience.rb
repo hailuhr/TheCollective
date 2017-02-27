@@ -11,7 +11,6 @@ class Experience < ApplicationRecord
 
 
   def location_attributes=(location_attributes)
-    binding.pry
 
     self.build_location(location_attributes)
     # self.create_location(location_attributes)
@@ -22,6 +21,7 @@ class Experience < ApplicationRecord
 
 
   def self.search(search)
+    binding.pry
     if Location.find_by(:city => "#{search}")
       Location.find_by(:city => "#{search}").experiences
     else
