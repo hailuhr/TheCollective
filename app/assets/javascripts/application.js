@@ -22,6 +22,6 @@
 //= require underscore
 //= require gmaps/google
 
-
-//= require_tree
 //= require turbolinks
+//= require jquery-readyselector
+//= require_tree

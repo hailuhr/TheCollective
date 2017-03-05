@@ -1,12 +1,9 @@
 class LocationsController < ApplicationController
 
     def geocode
-
       locations = Location.geocoded
-
-      location_latitudes = locations.map{ |l| {lng: l.longitude, lat: l.latitude} }
-
-      render json: location_latitudes
+      @location_latitudes = locations.map{ |l| {lng: l.longitude, lat: l.latitude} }
+      render json: @location_latitudes
     end
 
     def new
@@ -24,11 +21,11 @@ class LocationsController < ApplicationController
 
 
     def create
-
+      # binding.pry
       @location = Location.new(location_params)
        @location.save
       if @location.valid?
-        render :show
+        render :home
       else
         render :new
       end
@@ -57,10 +54,10 @@ class LocationsController < ApplicationController
 
 
     def search
-      # binding.pry
       if params[:search]
         if !(Location.search(params[:search]).nil?) && !(Location.search(params[:search]).empty?)
           @response = Location.search(params[:search])
+
           render json: @response
         else
           render plain: "No experiences found"

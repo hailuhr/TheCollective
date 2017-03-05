@@ -16,7 +16,6 @@ $(document).on('turbolinks:load', function() {
 
   $("body").on("click", "#comment", postComment)
 
-  $("body").on("click", ".post", post)
 
   // $("body").on("click", "#edit", editPage)
 
@@ -84,8 +83,7 @@ function findExperiences() {
 function findLocationForm(e) {
   e.preventDefault()
 
-   $("#google").remove()
-
+   $("#google").remove() || $(".ui.basic.segment.landpage-image").remove()
     $(".show").remove()
     var showDiv = document.createElement(`div`);
     $(showDiv).attr(`class`, "show").append(`<br><br><div class="i">
@@ -255,10 +253,6 @@ function postComment() {
   var input = document.createElement("input")
   $(postDiv).html($(input).attr(`class`, "post").attr(`type`, `text`))
   $(".comments").prepend(`<br>`).prepend(postDiv)
-
-}
-
-function post() {
 
 }
 

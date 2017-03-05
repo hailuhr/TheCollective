@@ -21,7 +21,6 @@ class Experience < ApplicationRecord
 
 
   def self.search(search)
-    binding.pry
     if Location.find_by(:city => "#{search}")
       Location.find_by(:city => "#{search}").experiences
     else
