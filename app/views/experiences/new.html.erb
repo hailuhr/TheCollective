@@ -16,7 +16,7 @@
 
 <div class="ui small form">
 
-  <p>Plot A New Location:</p>
+  <p onLoad=" LoadOnce() ">Plot A New Location:</p>
 
       <%= f.fields_for :location do |location| %>
           <%= location.label :name %>

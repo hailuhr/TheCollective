@@ -9,7 +9,7 @@ class Location < ApplicationRecord
 
 
 
-  validates_presence_of :name, :address, :city, :country
+  # validates_presence_of :name, :address, :city, :country
 
     # -----------------------------------------
       # with an attributes
