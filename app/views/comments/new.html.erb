@@ -1,5 +1,11 @@
-<%= form_for [@location, @comment] do |f| %>
-  <%= f.hidden_field :location_id, value: @location.id %>
-  <%= f.text_field :content %>
-  <%= f.submit "Post Comment" %>
-<% end %>
+
+<div class="small ui form">
+    <%= form_for [@location, @comment] do |f| %>
+      New Comment: <br>
+      <%= f.hidden_field :location_id, value: @location.id %>
+      <%= f.text_field :content %>
+      <br><br>
+      <%= f.submit "Post Comment" %>
+    <% end %>
+
+</div>

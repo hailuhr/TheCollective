@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   def home
+    # binding.pry
+
   end
 
 

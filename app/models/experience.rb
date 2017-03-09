@@ -1,11 +1,23 @@
 class Experience < ApplicationRecord
 
   belongs_to :user
+
   belongs_to :location
+
+  validates :story, presence: true
 
   accepts_nested_attributes_for :location
 
-  validates :story, presence: true
+
+
+  def location_attributes=(location_attributes)
+
+    self.build_location(location_attributes)
+    # self.create_location(location_attributes)
+    self.save
+  end
+
+
 
 
   def self.search(search)

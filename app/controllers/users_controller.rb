@@ -16,6 +16,14 @@ class UsersController < ApplicationController
     end
 
 
+
+    def show
+      @user = User.find_by_id(params[:id])
+      @locations = @user.locations.uniq
+    end
+
+
+
     private
 
       def user_params

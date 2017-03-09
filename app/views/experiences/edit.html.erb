@@ -1,8 +1,14 @@
-<h1>Experience form</h1>
-<%= form_tag experience_path(@experience), method: "put" do %>
+<div class="ui small form">
 
-<label>Experience </label>
-<%= text_field_tag :'experience[name]', @experience.story %><br>
 
-<%= submit_tag "Update experience" %>
-<% end %>
+
+    <h5>Experience form</h5>
+    <%= form_tag experience_path(@experience), method: "put" do %>
+
+    <label>Experience </label>
+      <%= text_area_tag :'experience[name]', @experience.story %><br>
+      <br><br>
+      <%= submit_tag "Update experience" %>
+    <% end %>
+
+</div>

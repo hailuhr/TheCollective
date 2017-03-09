@@ -1,20 +1,26 @@
-<h3>Update Location</h3>
+<div class="ui small form">
 
-<div class="location_update">
-<%= form_for(@location) do |f| %>
-  <label>Location Name:</label><br>
-  <%= f.text_field :name %><br>
+    <h3>Update Location</h3>
 
-  <label>City</label><br>
-  <%= f.text_field :city %><br>
+    <div class="location_update">
 
-  <label>State</label><br>
-  <%= f.text_field :state %><br>
+        <%= form_for(@location) do |f| %>
+          <label>Location Name:</label><br>
+          <%= f.text_field :name %><br>
 
-  <label>Address</label><br>
-  <%= f.text_field :address %><br>
+          <label>City</label><br>
+          <%= f.text_field :city %><br>
 
-  <%= f.submit %>
-<% end %>
+          <label>State</label><br>
+          <%= f.text_field :state %><br>
+
+          <label>Address</label><br>
+          <%= f.text_field :address %><br>
+
+          <br>
+          <%= f.submit class: "tiny ui button"%>
+        <% end %>
+
+    </div>
 
 </div>

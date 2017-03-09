@@ -1,32 +1,40 @@
+<p><%= @location.name %></p>
+<% if @location.errors.any? %>
+  <!-- <div id="error_explanation"> -->
+    <div class="errors" >
+      <%= pluralize(@location.errors.count, "error") %>
+      prohibited this post from being saved: <br>
 
-<div class="location_new">
-<%= form_for @location do |f| %>
-<%= f.label :name %><br>
-<%= f.text_field :name %><br>
-<%= f.label :city %><br>
-<%= f.text_field :city %><br>
-<%= f.label :state %><br>
-<%= f.text_field :state %><br>
-<%= f.label :address %><br>
-<%= f.text_field :address %><br><br>
-<%= f.submit %>
+        <% @location.errors.full_messages.each do |msg| %>
+          <%= msg %><br>
+        <% end %>
 
-<% end %>
-<div>
-
-
-  <%= form_for(@location) do |f| %><br><br>
-  <% if @location.errors.any? %>
-    <!-- <div id="error_explanation"> -->
-      <div class="errors" >
-
-        <%= pluralize(@location.errors.count, "error") %>
-        prohibited this post from being saved: <br>
-
-      <% @location.errors.full_messages.each do |msg| %>
-        <%= msg %><br>
-
-      <% end %>
     </div>
   <% end %>
-  <% end %>
+
+
+<div class="location_new">
+
+  <div class="ui small form">
+
+      <h3> New Location </h3>
+      <br>
+      <br>
+
+      <%= form_for @location, html: {class: "ui small form"} do |f| %>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %><br>
+        <%= f.label :address %><br>
+        <%= f.text_field :address %><br><br>
+        <%= f.label :zipcode %><br>
+        <%= f.text_field :zipcode %><br><br>
+        <%= f.label :city %><br>
+        <%= f.text_field :city %><br>
+        <%= f.label :country %><br>
+        <%= f.text_field :country %><br><br>     
+        <%= f.submit class: "ui button" %>
+
+     <% end %>
+
+    </div>
+</div>

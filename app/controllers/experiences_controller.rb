@@ -1,7 +1,26 @@
 class ExperiencesController < ApplicationController
 
+    def index
+      @experiences = Experience.all
+
+      respond_to do |format|
+        format.json { render json: @experiences}
+        format.html { render :index }
+      end
+    end
+
+
+    def user_index
+      @experiences = current_user.experiences
+
+      respond_to do |format|
+        format.json { render json: @experiences}
+        format.html { render :user_index }
+      end
+    end
+
+
     def new
-      @location = Location.new
       @experience = Experience.new
       @experience.build_location
       @locations = Location.all
@@ -14,19 +33,17 @@ class ExperiencesController < ApplicationController
 
 
     def create
+      binding.pry
       if params[:experience][:location_id].empty?
-        @experience = Experience.new(user: current_user, story: params[:experience][:story])
-        @experience.build_location(experience_params[:location_attributes])
-        @experience.save
+        @experience = Experience.create(experience_params)
       else
-        @experience = Experience.create(:story => experience_params[:story], :location_id => experience_params[:location_id], :user_id => current_user.id)
+        @experience = Experience.create(story: experience_params[:story], user_id: experience_params[:user_id], location_id: experience_params[:location_id])
       end
 
+      @experience.save
       if @experience.valid?
           redirect_to experience_path(@experience)
       else
-        # @locations = Location.all
-        # render :new
         redirect_to new_experience_path
       end
 
@@ -45,12 +62,10 @@ class ExperiencesController < ApplicationController
     end
 
 
-
-
     private
 
       def experience_params
-        params.require(:experience).permit(:story, :location_id, location_attributes: [:name, :city, :state, :address])
+          params.require(:experience).permit(:story, :user_id, :location_id, location_attributes: [:name, :city, :country, :zipcode, :address])
       end
 
 
