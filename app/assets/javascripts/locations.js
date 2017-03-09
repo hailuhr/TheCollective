@@ -16,6 +16,7 @@ $(document).on('turbolinks:load', function() {
 
   $("body").on("click", "#comment", postComment)
 
+  $("body").on("click", "#new_experience", pageReload)
 
   // $("body").on("click", "#edit", editPage)
 
@@ -36,6 +37,18 @@ function myExperiences(e){
       })
     }
   })
+}
+
+
+function pageReload() {
+  if(document.URL.indexOf("#")==-1){
+   // Set the URL to whatever it was plus "#".
+   url = document.URL+"#";
+   location = "#";
+
+   //Reload the page
+   location.reload(true);
+}
 }
 
 
@@ -149,6 +162,7 @@ function makeLocation(e){
   var state = $("#location_state").val()
   var address = $("#location_address").val()
 
+
   $.ajax({
     method: "POST",
     url: "/locations",
@@ -164,6 +178,7 @@ function makeLocation(e){
       $(".show").append(location.makeHtml())
     }
   })
+
 
 }
 

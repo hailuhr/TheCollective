@@ -33,7 +33,7 @@ class ExperiencesController < ApplicationController
 
 
     def create
-      binding.pry
+      # binding.pry
       if params[:experience][:location_id].empty?
         @experience = Experience.create(experience_params)
       else
@@ -42,7 +42,8 @@ class ExperiencesController < ApplicationController
 
       @experience.save
       if @experience.valid?
-          redirect_to experience_path(@experience)
+          render "/application/home"
+          # redirect_to experience_path(@experience)
       else
         redirect_to new_experience_path
       end
